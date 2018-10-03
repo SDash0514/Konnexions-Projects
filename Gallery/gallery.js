@@ -10,23 +10,17 @@ $(function(){
     "NYC images/times square.jpg",
     "NYC images/xConey-Island.jpg.pagespeed.ic.BtMPJcyJaD.jpg"
   ];
-
   var i = 0;
- var k;
-/*  $(document).ready(function(){
-    $("#box").hide();
-    $(".gallery").hide();
-      $("button").click(function(){
-       k=$(this).html();
-      $(this).html("SEE LESS");
-          $("#box").fadetoggle();
-    $(".gallery").toggle("slow");
-      });
-    $("button").click(function(){
-    $(this).html(k);
-      });
-  });
-  */
+  setInterval(function(){
+    i = (i+1) % images.length;
+    galleryImage.fadeOut(function(){
+        $(this).attr('src', images[i]);
+        $(this).fadeIn();
+    });
+  }, 3500);
+
+});
+  
 
 $(document).ready(function(){
   $("#1").mouseover(function(){
@@ -133,23 +127,18 @@ $(document).ready(function() {
 });
 
 
-var k;
+var k=0;
   $(document).ready(function(){
     $("#box").hide();
     $(".gallery").hide();
     $(".btn-block").click(function(){
-      //$(this).html("SEE LESS");
+      if(k%2==0){
+        $(this).html("SEE LESS");
+      }else {
+        $(this).html("SEE MORE");
+      }
+      k++;
       $("#box").toggle("slow");
       $(".gallery").toggle(3000);
     });
   });
-
-  setInterval(function(){
-    i = (i+1) % images.length;
-    galleryImage.fadeOut(function(){
-        $(this).attr('src', images[i]);
-        $(this).fadeIn();
-    });
-  }, 3500);
-
-});
